@@ -12,12 +12,17 @@ function drawScene() {
     mView = M4x4.translate3(0,0,localParam.camera.translate[2],mView);
     mView = M4x4.rotate(localParam.camera.rotate[0],V3.$(1,0,0),mView);
     mView = M4x4.rotate(localParam.camera.rotate[1],V3.$(0,1,0),mView);
-
-	  localParam.camera.eye = V3.$(-mViewInv[12],-mViewInv[13],-mViewInv[14]);
+    
+    localParam.camera.eye = V3.$(-mViewInv[12],-mViewInv[13],-mViewInv[14]);
 
     readDebugParam();
     simulate();
     drawJellyfish();
+	
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.colorMask(false, false, false, true);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.colorMask(true, true, true, true);
 
     gl.flush();
 }
